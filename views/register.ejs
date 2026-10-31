@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <!-- 1. Common global styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- 2. Auth form styles -->
+    <link rel="stylesheet" href="/css/register.css">
+</head>
+
+<body class="register-page">
+
+    <main class="register-wrapper">
+        <form class="registration-form" action="/user/register" method="post">
+            <h1 class="register-title">Registration Form</h1>
+
+            <div class="form-group">
+                <label for="username" class="form-label">Enter Username</label>
+                <input type="text" name="gusername" id="username" class="form-input" required autocomplete="off">
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" name="gemail" id="email" class="form-input" required autocomplete="email">
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="gpassword" id="password" class="form-input" required
+                    autocomplete="new-password">
+            </div>
+
+            <button type="submit" class="btn-register">Register</button>
+
+            <!-- Inside the register form card -->
+            <p class="auth-switch">Already have an account? <a href="/user/login" class="auth-link">Login</a></p>
+        </form>
+    </main>
+
+</body>
+
+</html>

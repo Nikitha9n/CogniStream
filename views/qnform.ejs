@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chat</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <link rel="stylesheet" href="/css/chat.css">
+</head>
+
+<body class="chat-page-body">
+
+    <!-- Mobile Top Navigation Bar -->
+    <div class="mobile-nav-bar">
+        <button type="button" id="sidebarToggleBtn" class="btn-toggle-sidebar" aria-label="Toggle Conversations">☰
+            Chats</button>
+        <span class="mobile-app-title">AI Chat</span>
+    </div>
+
+    <div class="chat-layout">
+        <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+        <!-- 💬 LEFT SIDEBAR -->
+        <aside id="chatSidebar" class="chat-sidebar">
+            <div class="sidebar-top-action">
+                <a href="/ask" class="btn-new-chat">+ New Chat</a>
+            </div>
+
+            <ul class="sidebar-chat-list">
+                <% if (typeof conversations !=='undefined' && conversations && conversations.length> 0) { %>
+                    <% conversations.forEach(function(conv) { %>
+                        <li
+                            class="sidebar-chat-item <%= (typeof currentConvoId !== 'undefined' && currentConvoId === conv.convo_id) ? 'active' : '' %>">
+                            <a href="/ask?convo_id=<%= conv.convo_id %>" class="sidebar-chat-link"
+                                title="<%= conv.title %>">
+                                💬 <%= conv.title %>
+                            </a>
+                        </li>
+                        <% }); %>
+                            <% } else { %>
+                                <li class="sidebar-empty-msg">No past chats yet</li>
+                                <% } %>
+            </ul>
+
+            <!-- 🔒 PINNED SIDEBAR FOOTER -->
+            <div class="sidebar-footer">
+                <a href="/history" class="sidebar-footer-link">📜 Full History View &rarr;</a>
+                <a href="/user/register/" class="logout-link">Logout</a>
+            </div>
+        </aside>
+
+        <!-- 🖥️ MAIN ACTIVE CHAT PANEL -->
+        <main class="chat-main">
+            <header class="chat-header">
+                <div class="header-left">
+                    <h2>AI Chat</h2>
+                    <div class="user-greeting">
+                        Welcome, <strong>
+                            <%= userName %>
+                        </strong>
+                        <span class="user-tag">(#<%= userId %>)</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="chat-scroll-area" id="chatScrollArea">
+                <!-- PAST MESSAGES WITH WRONG (×) DELETE ICONS -->
+                <div id="pastMessagesContainer">
+                    <% if (typeof pastMessages !=='undefined' && pastMessages && pastMessages.length> 0) { %>
+                        <% pastMessages.forEach(function(msg) { %>
+                            <div class="message-bubble <%= msg.role %>" id="msg-bubble-<%= msg.msg_id %>">
+                                <div class="msg-bubble-header">
+                                    <strong class="sender-label">
+                                        <%= msg.role==='user' ? 'You' : 'AI' %>:
+                                    </strong>
+                                    <!-- ❌ WRONG/DELETE ICON -->
+                                    <button type="button" class="btn-delete-msg"
+                                        onclick="deleteMessage('<%= msg.msg_id %>')"
+                                        title="Delete this message">&times;</button>
+                                </div>
+                                <div class="content"><%- msg.contentHtml || msg.content %></div>
+                            </div>
+                            <% }); %>
+                                <% } %>
+                </div>
+
+                <!-- LIVE STREAMING CONTAINER -->
+                <div id="resultBox" class="result-card">
+                    <h3 id="displayQuestion" class="question-heading"></h3>
+                    <hr class="card-divider">
+                    <div id="displayAnswer" class="answer-body"></div>
+                </div>
+            </div>
+
+            <!-- PROMPT FORM -->
+            <form id="askForm" class="chat-form">
+                <div class="chat-input-row">
+                    <textarea id="qnInput" name="qnsent" class="chat-textarea" placeholder="Type any question..."
+                        rows="1" required></textarea>
+                </div>
+
+                <div class="chat-controls-row">
+                    <div class="level-badge-container">
+                        <input type="hidden" id="levelSelect" name="level" value="medium">
+                        <button type="button" id="levelTriggerBtn" class="circle-badge-btn"
+                            title="Choose response level">
+                            <span id="levelBadgeText">⚡</span>
+                        </button>
+                        <div id="levelDropdownMenu" class="level-popup-menu">
+                            <div class="level-option" data-value="beginner" data-badge="🌱">
+                                <strong>🌱 Beginner</strong>
+                                <small>Simple analogies</small>
+                            </div>
+                            <div class="level-option active" data-value="medium" data-badge="⚡">
+                                <strong>⚡ Medium</strong>
+                                <small>Clear & balanced</small>
+                            </div>
+                            <div class="level-option" data-value="pro" data-badge="🚀">
+                                <strong>🚀 Pro</strong>
+                                <small>Deep technical breakdown</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-actions">
+                        <button type="button" id="clearBtn" class="btn-action btn-clear-input">Clear</button>
+                        <button type="button" id="stopBtn" class="btn-action btn-stop">Stop</button>
+                        <button type="submit" id="submitBtn" class="btn-action btn-submit-chat">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <div id="convoData" data-convo-id="<%= locals.currentConvoId || '' %>"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js"></script>
+    <script src="/js/chat.js"></script>
+    <script>
+        const sidebarToggleBtn = document.getElementById("sidebarToggleBtn");
+        const chatSidebar = document.getElementById("chatSidebar");
+        const sidebarOverlay = document.getElementById("sidebarOverlay");
+
+        if (sidebarToggleBtn && chatSidebar && sidebarOverlay) {
+            sidebarToggleBtn.addEventListener("click", () => {
+                chatSidebar.classList.toggle("open");
+                sidebarOverlay.classList.toggle("active");
+            });
+
+            sidebarOverlay.addEventListener("click", () => {
+                chatSidebar.classList.remove("open");
+                sidebarOverlay.classList.remove("active");
+            });
+        }
+    </script>
+</body>
+
+</html>

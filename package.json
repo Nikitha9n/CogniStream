@@ -1,0 +1,26 @@
+{
+  "name": "gemini_text_generation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "dotenv": "^18.0.5",
+    "ejs": "^7.0.1",
+    "express": "^5.2.1",
+    "express-mysql-session": "^3.0.3",
+    "express-rate-limit": "^8.7.1",
+    "express-session": "^1.19.0",
+    "groq-sdk": "^1.6.0",
+    "markdown-it": "^15.0.2",
+    "mysql2": "^3.24.5",
+    "nodemailer": "^10.1.1",
+    "pdfkit": "^0.20.2",
+    "zod": "^4.6.7"
+  }
+}

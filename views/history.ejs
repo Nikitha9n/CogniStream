@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat History - AI Assistant</title>
+    <!-- External CSS only -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/history.css">
+    <link rel="stylesheet" href="/css/theme.css">
+</head>
+
+<body class="history-page-body">
+
+    <div class="chat-card history-container">
+
+        <!-- Top Header -->
+        <header class="history-header">
+            <div>
+                <h1>Your Past Conversations</h1>
+                <p class="subtitle">Review previous conversations or jump directly back to chat.</p>
+            </div>
+
+            <div class="history-header-actions">
+                <!-- Place it right here -->
+                <button type="button" id="themeToggleBtn" class="btn-theme-toggle">
+                    ☀️ Light Mode
+                </button>
+
+                <% if (typeof conversations !=='undefined' && conversations && conversations.length> 0) { %>
+                    <form action="/clear-all-history" method="POST"
+                        onsubmit="return confirm('Are you sure you want to permanently delete all conversations? This cannot be undone.');">
+                        <button type="submit" class="btn-clear-all">
+                            🗑️ Clear All
+                        </button>
+                    </form>
+                    <% } %>
+                        <a href="/ask" class="btn-nav">+ New Chat</a>
+            </div>
+        </header>
+
+        <!-- Search Chat & Important Only Filter Controls -->
+        <div class="history-toolbar">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search conversations by title or topic...">
+            </div>
+            <button type="button" id="starFilterBtn" class="btn-filter">
+                ★ Important Only
+            </button>
+        </div>
+
+        <!-- Conversations List -->
+        <div class="convo-list" id="convoList">
+            <% if (typeof conversations !=='undefined' && conversations && conversations.length> 0) { %>
+                <% conversations.forEach(function(conv, index) { var msgSearchText="" ; if (conv.messages &&
+                    Array.isArray(conv.messages)) { for (var i=0; i < conv.messages.length; i++) { if (conv.messages[i]
+                    && conv.messages[i].content) { msgSearchText +=" " +
+                    conv.messages[i].content.replace(/[\r\n"']/g, " " ); } } } var cleanTitle=(conv.title || ""
+                    ).replace(/[\r\n"']/g, " " ); %>
+                    <article class="convo-card <%= conv.is_important ? 'is-starred' : '' %>"
+                        id="convo-card-<%= conv.convo_id %>" data-title="<%= cleanTitle.toLowerCase() %>"
+                        data-important="<%= conv.is_important ? '1' : '0' %>"
+                        data-content="<%= msgSearchText.toLowerCase() %>">
+
+                        <div class="convo-info">
+                            <div class="convo-header-row">
+                                <span class="convo-number">Chat #<%= index + 1 %></span>
+
+                                <button type="button" class="btn-star <%= conv.is_important ? 'starred' : '' %>"
+                                    data-convo-id="<%= conv.convo_id %>"
+                                    title="<%= conv.is_important ? 'Unmark important' : 'Mark as important' %>">
+                                    <%= conv.is_important ? '★ Starred' : '☆ Mark Important' %>
+                                </button>
+
+                                <span class="msg-count-pill">
+                                    <%= conv.message_count || (conv.messages ? conv.messages.length : 'Chat' ) %>
+                                        messages
+                                </span>
+                            </div>
+
+                            <h2 class="convo-title">
+                                <%= conv.title || 'Untitled Conversation' %>
+                            </h2>
+
+                            <% if (conv.created_at || conv.time) { %>
+                                <time class="convo-date">
+                                    <%= conv.created_at ? new Date(conv.created_at).toLocaleString() : conv.time %>
+                                </time>
+                                <% } %>
+                        </div>
+
+                        <!-- Direct Navigation, Export, and Delete Actions -->
+                        <div class="convo-actions">
+                            <div class="export-dropdown">
+                                <button type="button" class="btn-export" data-convo-id="<%= conv.convo_id %>">
+                                    📥 Export ▾
+                                </button>
+                                <div id="export-menu-<%= conv.convo_id %>" class="export-menu">
+                                    <a href="#" class="export-option" data-convo-id="<%= conv.convo_id %>"
+                                        data-format="pdf">📄 PDF Document (.pdf)</a>
+                                    <a href="#" class="export-option" data-convo-id="<%= conv.convo_id %>"
+                                        data-format="word">📝 Word Document (.doc)</a>
+                                    <a href="#" class="export-option" data-convo-id="<%= conv.convo_id %>"
+                                        data-format="txt">📋 Plain Text (.txt)</a>
+                                </div>
+                            </div>
+
+                            <a href="/ask?convo_id=<%= conv.convo_id %>" class="btn-open-convo">
+                                View Conversation &rarr;
+                            </a>
+
+                            <form action="/delete-convo/<%= conv.convo_id %>" method="POST"
+                                onsubmit="return confirm('Delete this entire chat thread?');">
+                                <button type="submit" class="btn-delete-convo"
+                                    title="Delete conversation">&times;</button>
+                            </form>
+                        </div>
+                    </article>
+                    <% }); %>
+                        <% } else { %>
+                            <div class="history-empty">
+                                <p>No saved conversations found.</p>
+                                <a href="/ask" class="btn-nav">Start a Conversation</a>
+                            </div>
+                            <% } %>
+        </div>
+
+    </div>
+
+    <!-- 1. Markdown parser -->
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js"></script>
+    
+    <!-- 2. Theme switcher -->
+    <script src="/js/theme.js"></script>
+    
+    <!-- 3. History features (Search, Star, Export) -->
+    <script src="/js/history.js"></script>
+
+
+</body>
+
+</html>

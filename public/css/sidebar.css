@@ -1,0 +1,162 @@
+/* =====================================================
+   SIDEBAR LAYOUT (Locked 100vh with Visible Footer)
+   ===================================================== */
+.chat-sidebar {
+    width: 280px;
+    min-width: 280px;
+    background-color: #15090d;
+    border-right: 1px solid #3d1c24;
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    overflow: hidden !important;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 40;
+    box-sizing: border-box;
+}
+
+/* + New Chat Top Area */
+.sidebar-top-action {
+    padding: 16px 14px 12px 14px;
+    border-bottom: 1px solid #231015;
+    flex-shrink: 0;
+}
+
+.btn-new-chat {
+    display: block;
+    width: 100%;
+    padding: 11px 14px;
+    background-color: #8b263e;
+    color: #ffffff;
+    border-radius: 6px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease;
+}
+
+.btn-new-chat:hover {
+    background-color: #6e1c30;
+}
+
+/* Scrollable Chat History List (Internal scroll prevents pushing footer) */
+.sidebar-chat-list {
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #3d1c24 #15090d;
+}
+
+.sidebar-chat-item {
+    margin-bottom: 4px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.sidebar-chat-item:hover {
+    background-color: #2b1118;
+}
+
+.sidebar-chat-item.active {
+    background-color: #3d1c24;
+    border-left: 3px solid #8b263e;
+}
+
+.sidebar-chat-link {
+    display: block;
+    padding: 10px 12px;
+    color: #b89ca4;
+    text-decoration: none;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sidebar-chat-item.active .sidebar-chat-link {
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.sidebar-empty-msg {
+    padding: 28px 14px;
+    text-align: center;
+    color: #8b747b;
+    font-size: 13px;
+}
+
+/* 🔒 PINNED FOOTER: Full History & Logout */
+.sidebar-footer {
+    border-top: 1px solid #3d1c24;
+    padding: 14px 16px;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    background-color: #12070a !important;
+    flex-shrink: 0 !important;
+    margin-top: auto;
+    box-sizing: border-box;
+}
+
+.sidebar-footer-link {
+    color: #b89ca4;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.sidebar-footer-link:hover {
+    color: #ffffff;
+}
+
+.logout-link {
+    color: #ff6b6b;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.logout-link:hover {
+    text-decoration: underline;
+}
+
+/* Mobile Drawer Overlay */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 45;
+}
+
+.sidebar-overlay.active {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .chat-sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh !important;
+        transform: translateX(-100%);
+        z-index: 50;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 4px 0 16px rgba(0, 0, 0, 0.85);
+    }
+
+    .chat-sidebar.open {
+        transform: translateX(0);
+    }
+}

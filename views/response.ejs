@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Response form</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/response.css">
+</head>
+
+<body class="response-page-body">
+
+    <main class="chat-card response-card">
+        <header class="question-header">
+            <span class="label">Your Question</span>
+            <h2 class="question-text">
+                <%= question %>
+            </h2>
+        </header>
+
+        <section class="response-section">
+            <span class="label">AI Answer</span>
+            <div class="response-content">
+                <%- answerHtml %>
+            </div>
+        </section>
+
+        <footer class="actions">
+            <a href="/history" class="btn-primary">View History</a>
+            <a href="/ask" class="btn-secondary">Ask Another</a>
+        </footer>
+    </main>
+
+</body>
+
+</html>

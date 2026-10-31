@@ -1,0 +1,62 @@
+/* ==========================================================================
+   THEME STYLES (public/css/theme.css)
+   ========================================================================== */
+
+:root {
+    /* Default: Dark Theme */
+    --bg-main: #1a080c;
+    --bg-card: #240c12;
+    --bg-input: #2b0e15;
+    --border-color: #3d141d;
+    --border-accent: #4d1a25;
+    --text-primary: #ffffff;
+    --text-secondary: #e0d0d3;
+    --text-muted: #88656d;
+    --primary-color: #8b263e;
+    --primary-hover: #a6324d;
+    --star-gold: #f1c40f;
+}
+
+/* Light Theme Overrides */
+[data-theme="light"] {
+    --bg-main: #f9f6f7;
+    --bg-card: #ffffff;
+    --bg-input: #f3ebed;
+    --border-color: #e5d1d6;
+    --border-accent: #d8bcc3;
+    --text-primary: #1e1114;
+    --text-secondary: #422a30;
+    --text-muted: #7d646a;
+    --primary-color: #8b263e;
+    --primary-hover: #a6324d;
+    --star-gold: #d4a000;
+}
+
+/* Global transitions across theme changes */
+body,
+.chat-card,
+.convo-card,
+input,
+button {
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+/* Theme Toggle Button Styling */
+.btn-theme-toggle {
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-accent);
+    color: var(--text-secondary);
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    user-select: none;
+}
+
+.btn-theme-toggle:hover {
+    border-color: var(--primary-color);
+    color: var(--text-primary);
+}

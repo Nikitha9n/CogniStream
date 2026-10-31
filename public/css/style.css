@@ -1,0 +1,110 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #150a0d;
+    color: #f3ebed;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+}
+
+/* Headings & Subtitles */
+h1 {
+    font-size: 22px;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: 18px;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.subtitle {
+    color: #b89ca4;
+    font-size: 14px;
+}
+
+/* Primary Action / Nav Buttons */
+.btn-nav {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #8b263e;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    display: inline-block;
+    transition: background-color 0.2s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-nav:hover {
+    background-color: #6e1c30;
+}
+
+/* Reusable Container Card (For History, Response, and Non-Chat Views) */
+.chat-card {
+    width: 100%;
+    max-width: 920px;
+    margin: 24px auto;
+    background-color: #1a0c10;
+    border: 1px solid #3d1c24;
+    border-radius: 10px;
+    padding: 24px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6);
+}
+
+/* Common Form Inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    width: 100%;
+    padding: 10px 14px;
+    background-color: #1a0c10;
+    border: 1px solid #3d1c24;
+    border-radius: 6px;
+    color: #f3ebed;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #b89ca4;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #8b263e;
+    box-shadow: 0 0 0 2px rgba(139, 38, 62, 0.3);
+}
+
+.inline-form {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 640px) {
+    .chat-card {
+        margin: 12px auto;
+        padding: 16px 14px;
+        border-radius: 8px;
+    }
+}

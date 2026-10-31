@@ -1,0 +1,351 @@
+/* ==========================================================================
+   HISTORY PAGE STYLES (public/css/history.css)
+   ========================================================================== */
+
+/* Page layout */
+.history-page-body {
+    margin: 0;
+    padding: 24px;
+    background-color: var(--bg-main, #1a080c);
+    color: var(--text-secondary, #e0d0d3);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.history-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Header */
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--border-color, #3d141d);
+    padding-bottom: 16px;
+}
+
+.history-header h1 {
+    margin: 0 0 6px 0;
+    font-size: 24px;
+    color: var(--primary-color, #ff85a1);
+}
+
+.history-header .subtitle {
+    margin: 0;
+    font-size: 13px;
+    color: var(--text-muted, #a88990);
+}
+
+.history-header-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Clear All Button */
+.btn-clear-all {
+    background-color: var(--bg-input, #3b111a);
+    color: var(--text-secondary, #ff8fa3);
+    border: 1px solid var(--border-accent, #6b2131);
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-clear-all:hover {
+    background-color: var(--primary-color, #8b263e);
+    color: #ffffff;
+    border-color: var(--primary-hover, #a6324d);
+}
+
+/* Toolbar: Search & Star Filter */
+.history-toolbar {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.search-box {
+    flex: 1;
+}
+
+.search-box input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 14px;
+    background-color: var(--bg-input, #2b0e15);
+    border: 1px solid var(--border-accent, #4d1a25);
+    border-radius: 6px;
+    color: var(--text-primary, #ffffff);
+    font-size: 14px;
+    outline: none;
+}
+
+.search-box input:focus {
+    border-color: var(--primary-color, #ff85a1);
+}
+
+.btn-filter {
+    background-color: var(--bg-input, #2b0e15);
+    color: var(--text-muted, #a88990);
+    border: 1px solid var(--border-accent, #4d1a25);
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.btn-filter.active {
+    background-color: var(--primary-color, #8b263e);
+    color: #ffffff;
+    border-color: var(--primary-hover, #ff85a1);
+}
+
+/* Conversation Cards */
+.convo-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.convo-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: var(--bg-card, #240c12);
+    border: 1px solid var(--border-color, #3d141d);
+    border-radius: 8px;
+    padding: 16px 20px;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.convo-card:hover {
+    border-color: var(--border-accent, #5c1f2c);
+}
+
+.convo-card.is-starred {
+    border-left: 4px solid var(--star-gold, #f1c40f);
+}
+
+.convo-info {
+    flex: 1;
+}
+
+.convo-header-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.convo-number {
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--text-muted, #88656d);
+}
+
+.msg-count-pill {
+    background-color: var(--bg-input, #38121b);
+    color: var(--text-secondary, #c9a5ad);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+}
+
+.convo-title {
+    margin: 0 0 6px 0;
+    font-size: 16px;
+    color: var(--text-primary, #ffffff);
+}
+
+.convo-date {
+    font-size: 12px;
+    color: var(--text-muted, #88656d);
+}
+
+/* Star Button */
+.btn-star {
+    background: none;
+    border: 1px solid var(--border-accent, #4d1a25);
+    color: var(--text-muted, #a88990);
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.btn-star.starred {
+    border-color: var(--star-gold, #f1c40f);
+    color: var(--star-gold, #f1c40f);
+}
+
+/* Actions */
+.convo-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 16px;
+}
+
+.btn-open-convo {
+    background-color: var(--primary-color, #8b263e);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.btn-open-convo:hover {
+    background-color: var(--primary-hover, #a6324d);
+}
+
+.btn-delete-convo {
+    background: none;
+    border: none;
+    color: var(--text-muted, #a88990);
+    font-size: 20px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px 8px;
+}
+
+.btn-delete-convo:hover {
+    color: #ff6b6b;
+}
+
+/* Export Dropdown */
+.export-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.btn-export {
+    background-color: var(--bg-input, #2b0e15);
+    border: 1px solid var(--border-accent, #4d1a25);
+    color: var(--text-secondary, #e0d0d3);
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.export-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 4px);
+    background-color: var(--bg-card, #240c12);
+    border: 1px solid var(--border-accent, #4d1a25);
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    min-width: 170px;
+    z-index: 100;
+}
+
+.export-menu.show {
+    display: block;
+}
+
+.export-menu a {
+    display: block;
+    padding: 10px 14px;
+    color: var(--text-secondary, #e0d0d3);
+    text-decoration: none;
+    font-size: 12px;
+    border-bottom: 1px solid var(--border-color, #331018);
+}
+
+.export-menu a:last-child {
+    border-bottom: none;
+}
+
+.export-menu a:hover {
+    background-color: var(--bg-input, #3b111a);
+    color: var(--primary-color, #ff85a1);
+}
+
+/* Empty State */
+.history-empty {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-muted, #88656d);
+}
+
+/* Hidden search bucket */
+.search-content {
+    display: none;
+}
+
+/* ==========================================================================
+   MOBILE RESPONSIVENESS FIX (< 650px)
+   ========================================================================== */
+@media (max-width: 650px) {
+
+    /* Stack conversation card vertically so actions don't overflow */
+    .convo-card {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+        padding: 14px;
+    }
+
+    /* Full width actions container below the chat details */
+    .convo-actions {
+        margin-left: 0;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        border-top: 1px solid var(--border-color, #3d141d);
+        padding-top: 12px;
+    }
+
+    /* Make buttons stretch nicely inside the card */
+    .btn-open-convo {
+        flex: 1;
+        text-align: center;
+        padding: 8px 10px;
+    }
+
+    .export-dropdown {
+        position: relative;
+    }
+
+    /* Wrap the top pill row if needed */
+    .convo-header-row {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    /* Responsive header actions */
+    .history-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .history-header-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    /* Stack search toolbar on small mobile */
+    .history-toolbar {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .btn-filter {
+        width: 100%;
+        text-align: center;
+    }
+}

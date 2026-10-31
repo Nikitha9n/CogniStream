@@ -1,0 +1,143 @@
+/* =====================================================
+   REGISTER PAGE LAYOUT & CONTAINER
+   ===================================================== */
+.register-page {
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0d0608;
+    box-sizing: border-box;
+}
+
+.register-wrapper {
+    width: 100%;
+    max-width: 360px;
+    display: flex;
+    justify-content: center;
+}
+
+.registration-form {
+    background-color: #1a0c10;
+    border: 1px solid #3d1c24;
+    border-radius: 8px;
+    padding: 28px 24px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6);
+    box-sizing: border-box;
+}
+
+.register-title {
+    color: #ffffff;
+    font-size: 22px;
+    text-align: center;
+    margin: 0 0 8px 0;
+    font-weight: 600;
+}
+
+/* =====================================================
+   FORM GROUPS, LABELS & INPUTS
+   ===================================================== */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-label {
+    font-size: 13px;
+    color: #b89ca4;
+    font-weight: 500;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px 12px;
+    background-color: #12070a;
+    border: 1px solid #3d1c24;
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input:focus {
+    border-color: #8b263e;
+    box-shadow: 0 0 0 2px rgba(139, 38, 62, 0.35);
+}
+
+/* =====================================================
+   SUBMIT BUTTON & REDIRECT SWITCH
+   ===================================================== */
+.btn-register {
+    background-color: #8b263e;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 11px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-register:hover {
+    background-color: #6e1c30;
+}
+
+.btn-register:active {
+    transform: scale(0.99);
+}
+
+.auth-switch {
+    margin: 12px 0 0 0;
+    font-size: 13px;
+    color: #b89ca4;
+    text-align: center;
+}
+
+.auth-link {
+    color: #e06c75;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-link:hover {
+    text-decoration: underline;
+}
+
+/* =====================================================
+   RESPONSIVE BREAKPOINTS (MOBILE PHONES <= 480px)
+   ===================================================== */
+@media (max-width: 480px) {
+    .register-page {
+        padding: 14px;
+    }
+
+    .registration-form {
+        padding: 22px 18px;
+        box-shadow: none;
+    }
+
+    .register-title {
+        font-size: 20px;
+    }
+
+    .form-input {
+        font-size: 16px;
+        /* Prevents auto-zoom in mobile browsers */
+        padding: 11px 12px;
+    }
+
+    .btn-register {
+        padding: 12px;
+    }
+}

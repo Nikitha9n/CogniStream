@@ -1,0 +1,240 @@
+/* =====================================================
+   1. PAGE WRAPPER & CONTAINER
+   ===================================================== */
+.response-page-body {
+    margin: 0;
+    padding: 24px 16px;
+    background-color: #0d0608;
+    color: #b89ca4;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.response-card {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #1a0c10;
+    border: 1px solid #3d1c24;
+    border-radius: 12px;
+    padding: 28px 24px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* =====================================================
+   2. SECTION LABELS & QUESTION HEADER
+   ===================================================== */
+.label {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.75px;
+    color: #ff85a1;
+    margin-bottom: 8px;
+}
+
+.question-header {
+    background-color: rgba(139, 38, 62, 0.15);
+    border-left: 4px solid #8b263e;
+    border-radius: 6px;
+    padding: 16px;
+}
+
+.question-text {
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+/* =====================================================
+   3. AI RESPONSE SECTION & MARKDOWN STYLING
+   ===================================================== */
+.response-section {
+    background-color: #15090d;
+    border: 1px solid #3d1c24;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.response-content {
+    line-height: 1.65;
+    color: #f1e6e9;
+    font-size: 0.95rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Horizontal scroll for markdown tables on narrow viewports */
+.response-content table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-collapse: collapse;
+    margin: 14px 0;
+    background-color: #12070a;
+    border: 1px solid #3d1c24;
+    border-radius: 6px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.response-content th,
+.response-content td {
+    padding: 10px 14px !important;
+    text-align: left;
+    border: 1px solid #3d1c24 !important;
+    vertical-align: top;
+    white-space: normal;
+    min-width: 120px;
+}
+
+.response-content th {
+    background-color: #2b1118;
+    color: #ff85a1;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+}
+
+.response-content ul,
+.response-content ol {
+    padding-left: 22px;
+    margin: 10px 0;
+}
+
+.response-content li {
+    margin-bottom: 6px;
+    color: #d1b8bf;
+}
+
+.response-content h1,
+.response-content h2,
+.response-content h3,
+.response-content h4 {
+    color: #ffffff;
+    margin: 16px 0 8px 0;
+    font-weight: 600;
+}
+
+.response-content hr {
+    border: 0;
+    border-top: 1px solid #3d1c24;
+    margin: 16px 0;
+}
+
+.response-content pre {
+    background-color: #0d0608;
+    padding: 12px 14px;
+    border-radius: 6px;
+    overflow-x: auto;
+    border: 1px solid #3d1c24;
+    margin: 12px 0;
+    max-width: 100%;
+}
+
+.response-content code {
+    font-family: Consolas, Monaco, "Courier New", monospace;
+    background-color: #2b1118;
+    color: #f1e6e9;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+/* =====================================================
+   4. ACTION BUTTONS
+   ===================================================== */
+.actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 6px;
+}
+
+.btn-primary {
+    background-color: #8b263e;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 11px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    display: inline-block;
+    transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #6e1c30;
+}
+
+.btn-secondary {
+    background-color: #2b1118;
+    color: #ffffff;
+    border: 1px solid #3d1c24;
+    text-decoration: none;
+    padding: 11px 20px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.92rem;
+    display: inline-block;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #3d1c24;
+    border-color: #8b263e;
+}
+
+/* =====================================================
+   5. MOBILE BREAKPOINTS (Screens <= 640px)
+   ===================================================== */
+@media (max-width: 640px) {
+    .response-page-body {
+        padding: 12px 8px;
+    }
+
+    .response-card {
+        padding: 16px 14px;
+        border-radius: 8px;
+        gap: 16px;
+    }
+
+    .question-header {
+        padding: 12px;
+    }
+
+    .question-text {
+        font-size: 1.1rem;
+    }
+
+    .response-section {
+        padding: 14px 12px;
+    }
+
+    .actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+}

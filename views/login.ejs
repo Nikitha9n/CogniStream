@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login form</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+
+<body>
+    <form class="login" action="/user/login" method="post">
+        <h2>Login</h2>
+
+<!-- 1. Display message if passed from index.js -->
+<% if (msg==='registered' ) { %>
+    <div id="flash-msg" class="msg-box success">Registered successfully! Please log in.</div>
+    <% } else if (msg==='invalid' ) { %>
+        <div id="flash-msg" class="msg-box error">Wrong email or password!</div>
+        <% } %>
+
+
+        <label for="email">Enter email</label>
+        <input name="gemail" id="email" type="email" required>
+
+        <label for="password">Enter Password</label>
+        <input name="gpassword" id="password" type="password" required>
+
+        <button type="submit">Login</button>
+    <!-- Inside the login form card -->
+    <p class="auth-switch">Don't have an account? <a href="/user/register">Register</a></p>
+    </form>
+
+<!-- 2. Auto-hide the message after 2 seconds --> 
+ <!-- message to show success,after 2 sec display is none-->
+<script>
+    const alertBox = document.getElementById("flash-msg");
+    if (alertBox) {
+        setTimeout(() => {
+            alertBox.style.display = "none";
+        }, 2000);
+    }
+</script>
+
+</body>
+
+</html>
